@@ -1,6 +1,6 @@
 def symetric(board, last_move):
     col, rows = last_move
-    return 6 - col, rows
+    return 5 - col, rows
 
 
 def intelligent_symetric(board, last_move):
