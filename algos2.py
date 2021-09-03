@@ -17,3 +17,6 @@ def intelligent_symetric(board, last_move):
             return not_full_cols[0],
         else:
             return symetric(board, last_move)
+
+
+algos2 = {"symétrique": symetric, "symétrique intelligent": intelligent_symetric}
