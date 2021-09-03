@@ -12,15 +12,17 @@ class Board:
         try:
             if col not in (0, 1, 2, 3, 4, 5):
                 raise ValueError("La colonne doit être comprise entre 0 et 5")
-            if rows is None:
+            if not rows:
+                if self.board[:, col].all():
+                    raise ValueError("La colonne est déjà entièrement pleine")
                 self.board[:, col] = 1
                 self.last_move = (col, rows)
                 return
             for row in rows:
                 if row not in (0, 1, 2, 3, 4, 5):
-                    raise ValueError("La colonne doit être comprise entre 0 et 5")
+                    raise ValueError("La rangée doit être comprise entre 0 et 5")
                 if self.board[row][col]:
-                    raise ValueError(f"La ligne {row} de la colonne {col} a déjà été jouée !")
+                    raise ValueError(f"La ligne {row} de la colonne {col} a déjà été jouée")
                 self.board[row][col] = 1
             self.last_move = (col, rows)
         except Exception:
