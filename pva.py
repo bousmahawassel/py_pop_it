@@ -7,16 +7,16 @@ if __name__ == '__main__':
     board = Board()
     is_player_turn = int(input("Voulez-vous commencer en première ou deuxième position ? ")) % 2 != 0
     if is_player_turn:
-        algos_all.update(algos2)
+        algos = {**algos_all, **algos2}
     else:
-        algos_all.update(algos1)
-    algo_name = input(f"Choisissez un algorithme parmi : {', '.join(algos_all.keys())} : ")
+        algos = {**algos_all, **algos1}
+    algo_name = input(f"Choisissez un algorithme parmi : {', '.join(algos.keys())} : ")
     try:
         algo_rank = int(algo_name)
-        algo_name = list(algos_all.keys())[algo_rank]
-        algo = algos_all[algo_name]
+        algo_name = list(algos.keys())[algo_rank]
+        algo = algos[algo_name]
     except ValueError:
-        algo = algos_all[algo_name]
+        algo = algos[algo_name]
     moves = 0
     while not board.is_finished():
         if is_player_turn:
