@@ -17,7 +17,7 @@ if __name__ == '__main__':
         algo = algos_start[algo_start_name]
     algo_not_start_name = input(f"Choisissez un algorithme parmi : {', '.join(algos_not_start.keys())} : ")
     try:
-        algo_not_start_rank = int(algo_name)
+        algo_not_start_rank = int(algo_not_start_name)
         algo_not_start_name = list(algos_not_start.keys())[algo_not_start_rank]
         algo_not_start = algos_not_start[algo_not_start_name]
     except ValueError:
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     while not board.is_finished():
         if is_first_turn:
             print(f"C'est au premier algorithme de jouer !")
-            board.play(*algo_start(board.board, board.last_move)
+            board.play(*algo_start(board.board, board.last_move))
         else:
             print("C'est à l'algo de jouer !")
             board.play(*algo_not_start(board.board, board.last_move))
