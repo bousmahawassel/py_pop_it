@@ -11,7 +11,6 @@ def aleatoire(state):
 
 
 def minimax(state):
-    print(state.get_best_moves()[1])
     return random.choice(state.get_best_moves()[1])
 
 
