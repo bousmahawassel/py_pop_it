@@ -11,7 +11,7 @@ def improved_symetric(state):
     if state.state == [0, 0, 0, 0, 0, 1, 5]:
         return 5, 6
     if state.state[6] < 4:
-        return symetric(state)
+        move = symetric(state)
     elif state.state[6] == 4:
         if state.state[5] == 0:
             return symetric(state)
@@ -25,4 +25,18 @@ def improved_symetric(state):
         return state.state.index(1), 5
 
 
-algos2 = {"symetric": symetric, "imp_symetric": improved_symetric}
+def improved_symetric_v2(state):
+    if state.state[5] + state.state[6] == 6:
+        return 5, 6
+    elif state.state[5] + state.state[6] == 5:
+        if state.state[5] == 0:
+            return state.state.index(1), 5
+        elif state.state[5] % 2 == 1:
+            return state.state.index(1), 6
+        else:
+            return state.state.index(1), 5
+    else:
+        return symetric(state)
+
+
+algos2 = {"sym": symetric, "symp": improved_symetric, "symp_v2": improved_symetric_v2}

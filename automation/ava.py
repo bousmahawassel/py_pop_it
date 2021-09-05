@@ -25,7 +25,6 @@ for _ in range(args.trial):
         else:
             move = algo2(state)
             state = State.get(state.play(move))
-            print(state.state, move, algo)
             algo = 1
         moves += 1
     if moves % 2 == 0:
