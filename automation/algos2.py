@@ -21,7 +21,6 @@ def improved_symetric(state):
         else:
             return 5, 6
     else:
-        print(state.state.index(1))
         return state.state.index(1), 5
 
 
