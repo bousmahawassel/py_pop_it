@@ -1,12 +1,12 @@
 import numpy as np
 
 
-def symetric(board, last_move):
+def symmetric(board, last_move):
     col, rows = last_move
     return 5 - col, rows
 
 
-def intelligent_symetric(board, last_move):
+def improved_symmetric(board, last_move):
     not_full_cols = []
     for col in range(6):
         if not board[:, col].all():
@@ -31,4 +31,16 @@ def intelligent_symetric(board, last_move):
             return symetric(board, last_move)
 
 
-algos2 = {"symétrique": symetric, "symétrique intelligent": intelligent_symetric}
+def improved_symmetric_v2(board, last_move):
+    full_cols = []
+    almost_full_cols = []
+    for col in range(6):
+        if np.count_nonzero(board[:, col]) == 6:
+            full_cols.append(col)
+        elif np.count_nonzero(board[:, col]) == 5:
+            almost_full_cols.append(col)
+    if len(full_cols) + len(almost_full_cols) > 4:
+        return symmetric(board, last_move)
+
+
+algos2 = {"sym": symmetric, "symp": intelligent_symmetric, "symp_v2": improved_symmetric_v2}
