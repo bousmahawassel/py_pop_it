@@ -24,14 +24,16 @@ while states:
     next_states = set()
     if algo_turn:
         for state in states:
-            algo_move = algo(state)
-            assert algo_move in state.get_best_moves()[1], f"L'algo n'est plus gagnant suite au coup {algo_move} " \
-                                                           f"dans la position {state.state}"
-            next_state = State.get(state.play(algo_move))
-            next_states.add(next_state)
+            if not state.is_finished:
+                algo_move = algo(state)
+                assert algo_move in state.get_best_moves()[1], f"L'algo n'est plus gagnant suite au coup {algo_move} " \
+                                                               f"dans la position {state.state}"
+                next_state = State.get(state.play(algo_move))
+                next_states.add(next_state)
     else:
         for state in states:
             next_states.update(state.get_children())
     states = next_states
+    algo_turn = not algo_turn
 
 print("La stratégie est optimale !")

@@ -14,4 +14,4 @@ def minimax(state):
     return random.choice(state.get_best_moves()[1])
 
 
-algos_all = {"aleatoire": aleatoire, "minimax": minimax}
+algos_all = {"random": aleatoire, "minimax": minimax}
