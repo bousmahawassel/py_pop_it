@@ -19,7 +19,7 @@ class State:
         moves = []
         for i in range(6):
             if self.state[i] > 0:
-                for n in range(1, 7-i):
+                for n in range(i+1, 7):
                     moves.append((i, n))
         self.moves = moves
         return self.moves
