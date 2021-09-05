@@ -20,6 +20,7 @@ for _ in range(args.trial):
     while not state.is_finished:
         if algo == 1:
             move = algo1(state)
+            print(move)
             state = State.get(state.play(move))
             algo = 2
         else:

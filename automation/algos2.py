@@ -11,7 +11,7 @@ def improved_symetric(state):
     if state.state == [0, 0, 0, 0, 0, 1, 5]:
         return 5, 6
     if state.state[6] < 4:
-        move = symetric(state)
+        return symetric(state)
     elif state.state[6] == 4:
         if state.state[5] == 0:
             return symetric(state)

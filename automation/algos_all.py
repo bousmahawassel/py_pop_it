@@ -1,4 +1,7 @@
 import random
+import os
+import json
+from game import State
 
 
 def aleatoire(state):
@@ -7,4 +10,9 @@ def aleatoire(state):
     return move
 
 
-algos_all = {"aleatoire": aleatoire}
+def minimax(state):
+    print(state.get_best_moves()[1])
+    return random.choice(state.get_best_moves()[1])
+
+
+algos_all = {"aleatoire": aleatoire, "minimax": minimax}

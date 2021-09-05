@@ -9,6 +9,8 @@ class State:
         type(self).instances.append(self)
         self.is_finished = self.state == [0, 0, 0, 0, 0, 0, 6]
         self.children = []
+        self.value = None
+        self.best_moves = None
 
     def get_possible_moves(self):
         if self.moves is not None:
@@ -19,7 +21,7 @@ class State:
         moves = []
         for i in range(6):
             if self.state[i] > 0:
-                for n in range(i+1, 7):
+                for n in range(i + 1, 7):
                     moves.append((i, n))
         self.moves = moves
         return self.moves
@@ -59,7 +61,23 @@ class State:
                 for state in states:
                     next_states.update(state.get_children())
                 states = next_states
-        return states
+
+    def get_best_moves(self):
+        if self.value is not None and self.best_moves is not None:
+            pass
+        elif self.is_finished:
+            self.value = val = True
+            self.best_moves = []
+        else:
+            best_moves_index = [i for i, val in enumerate(map(lambda child: not child.get_best_moves()[0],
+                                                              self.get_children())) if val]
+            if best_moves_index:
+                self.value = True
+                self.best_moves = [self.get_possible_moves()[i] for i in best_moves_index]
+            else:
+                self.value = False
+                self.best_moves = self.get_possible_moves()
+        return self.value, self.best_moves
 
     @classmethod
     def get(cls, state=None):
