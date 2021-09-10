@@ -1,3 +1,4 @@
+import numpy
 class State:
     instances = []
 
@@ -89,3 +90,11 @@ class State:
             if instance.state == state:
                 return instance
         return cls(state)
+    def to_board(self):
+        board = numpy.zeros((6,6))
+        col = 0
+        for popped, n in enumerate(self.state):
+            for i in range(n):
+                board[:, col] = [*[1 for _ in range(popped)], *[0 for _ in range(6-popped)]]
+                col += 1
+        return board

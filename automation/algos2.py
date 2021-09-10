@@ -16,7 +16,6 @@ def improved_symmetric(state):
         if state.state[5] == 0:
             return symmetric(state)
         elif state.state[5] == 1:
-            print(state.state.index(1))
             return state.state.index(1), 6
         else:
             return 5, 6
